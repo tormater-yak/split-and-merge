@@ -19,20 +19,20 @@ function SplitAndMerge_AddPages() {
     $pages["merge"] = "extensions/SplitAndMerge/mergethread.php";
     $pages["split"] = "extensions/SplitAndMerge/mergethread.php";
 }
+if (!defined("AJAX")) {
+    hook("meta", "SplitAndMerge_AddStyles");
+    hook("beforeRenderModTools", "SplitAndMerge_AddToolbarOptions");
+    if (get_role_permissions() & PERM_EDIT_THREAD) hook("beforePageLoad","SplitAndMerge_AddPages");
 
-hook("meta", "SplitAndMerge_AddStyles");
-hook("beforeRenderModTools", "SplitAndMerge_AddToolbarOptions");
-if (get_role_permissions() & PERM_EDIT_THREAD) hook("beforePageLoad","SplitAndMerge_AddPages");
-
-if ($q1 == "thread") {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if ($_POST["mergethread"]) {
-            redirect("merge/" . $q2);
-        }
-        if ($_POST["splitthread"]) {
-            redirect("split/" . $q2);
+    if ($q1 == "thread") {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_POST["mergethread"]) {
+                redirect("merge/" . $q2);
+            }
+            if ($_POST["splitthread"]) {
+                redirect("split/" . $q2);
+            }
         }
     }
 }
-
 ?>
