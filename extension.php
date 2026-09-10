@@ -26,10 +26,10 @@ if (!defined("AJAX")) {
 
     if ($q1 == "thread") {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if ($_POST["mergethread"]) {
+            if (isset($_POST["mergethread"])) {
                 redirect("merge/" . $q2);
             }
-            if ($_POST["splitthread"]) {
+            if (isset($_POST["splitthread"])) {
                 redirect("split/" . $q2);
             }
         }
